@@ -22,14 +22,20 @@ func NewTodoRepository(db *bun.DB) repository.TodoRepository {
 
 // FindAll returns all todo items
 func (r *todoRepositoryImpl) FindAll(ctx context.Context) ([]*entity.Todo, error) {
-	var todos []*entity.Todo
+	var bunTodos []*BunTodo
 	err := r.db.NewSelect().
-		Model(&todos).
+		Model(&bunTodos).
 		OrderExpr("created_at DESC").
 		Scan(ctx)
 
 	if err != nil {
 		return nil, err
+	}
+
+	// Convert BunTodo slices to domain entity slices
+	todos := make([]*entity.Todo, len(bunTodos))
+	for i, bunTodo := range bunTodos {
+		todos[i] = bunTodo.ToDomainEntity()
 	}
 
 	return todos, nil

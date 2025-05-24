@@ -2,7 +2,7 @@ package db
 
 import (
 	"context"
-	"copilot/internal/domain/entity"
+	"copilot/internal/interface/repository"
 	"database/sql"
 	"fmt"
 	"os"
@@ -32,7 +32,7 @@ func NewDB() *bun.DB {
 	db := bun.NewDB(sqldb, pgdialect.New())
 
 	// Register models
-	db.RegisterModel((*entity.Todo)(nil))
+	db.RegisterModel((*repository.BunTodo)(nil))
 
 	// Check if connection is alive
 	if err := db.Ping(); err != nil {
@@ -59,7 +59,7 @@ func Close(db *bun.DB) error {
 // InitSchema creates the necessary schema for the models
 func InitSchema(ctx context.Context, db *bun.DB) error {
 	models := []interface{}{
-		(*entity.Todo)(nil),
+		(*repository.BunTodo)(nil),
 	}
 
 	for _, model := range models {

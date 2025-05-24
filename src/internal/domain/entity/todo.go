@@ -4,12 +4,12 @@ import (
 	"time"
 )
 
-// Todo represents a todo item entity
+// Todo represents a todo item entity in the domain layer
 type Todo struct {
-	ID          int64     `bun:"id,pk,autoincrement"`
-	Title       string    `bun:"title,notnull"`
-	Description string    `bun:"description"`
-	Completed   bool      `bun:"completed,notnull,default:false"`
-	CreatedAt   time.Time `bun:"created_at,notnull,default:current_timestamp"`
-	UpdatedAt   time.Time `bun:"updated_at,notnull,default:current_timestamp"`
+	ID          int64
+	Title       string
+	Description string
+	Completed   bool
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
 }
