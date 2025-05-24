@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// TodoResponse represents the response for a todo item
+// TodoResponse はTodoアイテムのレスポンスを表す
 type TodoResponse struct {
 	ID          int64     `json:"id"`
 	Title       string    `json:"title"`
@@ -15,7 +15,7 @@ type TodoResponse struct {
 	UpdatedAt   time.Time `json:"updated_at"`
 }
 
-// FromEntity converts a Todo entity to TodoResponse DTO
+// FromEntity はTodoエンティティをTodoResponse DTOに変換する
 func (t *TodoResponse) FromEntity(todo *entity.Todo) {
 	t.ID = todo.ID
 	t.Title = todo.Title
@@ -25,7 +25,7 @@ func (t *TodoResponse) FromEntity(todo *entity.Todo) {
 	t.UpdatedAt = todo.UpdatedAt
 }
 
-// NewTodoResponse creates a new TodoResponse from a Todo entity
+// NewTodoResponse はTodoエンティティから新しいTodoResponseを作成する
 func NewTodoResponse(todo *entity.Todo) *TodoResponse {
 	resp := &TodoResponse{}
 	resp.FromEntity(todo)

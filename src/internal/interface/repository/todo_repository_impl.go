@@ -8,19 +8,19 @@ import (
 	"github.com/uptrace/bun"
 )
 
-// todoRepositoryImpl implements the TodoRepository interface
+// todoRepositoryImpl はTodoRepositoryインターフェースを実装する
 type todoRepositoryImpl struct {
 	db *bun.DB
 }
 
-// NewTodoRepository creates a new todo repository implementation
+// NewTodoRepository は新しいTodoリポジトリの実装を作成する
 func NewTodoRepository(db *bun.DB) repository.TodoRepository {
 	return &todoRepositoryImpl{
 		db: db,
 	}
 }
 
-// FindAll returns all todo items
+// FindAll は全てのTodoアイテムを返す
 func (r *todoRepositoryImpl) FindAll(ctx context.Context) ([]*entity.Todo, error) {
 	var bunTodos []*BunTodo
 	err := r.db.NewSelect().
@@ -32,7 +32,7 @@ func (r *todoRepositoryImpl) FindAll(ctx context.Context) ([]*entity.Todo, error
 		return nil, err
 	}
 
-	// Convert BunTodo slices to domain entity slices
+	// BunTodoスライスをドメインエンティティスライスに変換する
 	todos := make([]*entity.Todo, len(bunTodos))
 	for i, bunTodo := range bunTodos {
 		todos[i] = bunTodo.ToDomainEntity()

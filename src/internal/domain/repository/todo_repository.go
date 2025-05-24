@@ -5,8 +5,8 @@ import (
 	"copilot/internal/domain/entity"
 )
 
-// TodoRepository defines the interface for todo repository operations
+// TodoRepository はTodoリポジトリ操作のためのインターフェースを定義する
 type TodoRepository interface {
-	// FindAll returns all todo items
+	// FindAll は全てのTodoアイテムを返す
 	FindAll(ctx context.Context) ([]*entity.Todo, error)
 }

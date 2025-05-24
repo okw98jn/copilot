@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// BunTodo represents a todo item entity for Bun ORM
+// BunTodo はBun ORM用のTodoアイテムエンティティを表す
 type BunTodo struct {
 	ID          int64     `bun:"id,pk,autoincrement"`
 	Title       string    `bun:"title,notnull"`
@@ -15,7 +15,7 @@ type BunTodo struct {
 	UpdatedAt   time.Time `bun:"updated_at,notnull,default:current_timestamp"`
 }
 
-// ToDomainEntity converts a BunTodo to a domain entity Todo
+// ToDomainEntity はBunTodoをドメインエンティティのTodoに変換する
 func (b *BunTodo) ToDomainEntity() *entity.Todo {
 	return &entity.Todo{
 		ID:          b.ID,
@@ -27,7 +27,7 @@ func (b *BunTodo) ToDomainEntity() *entity.Todo {
 	}
 }
 
-// FromDomainEntity converts a domain entity Todo to BunTodo
+// FromDomainEntity はドメインエンティティのTodoをBunTodoに変換する
 func FromDomainEntity(todo *entity.Todo) *BunTodo {
 	return &BunTodo{
 		ID:          todo.ID,

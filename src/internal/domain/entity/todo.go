@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-// Todo represents a todo item entity in the domain layer
+// Todo はドメイン層のTodoアイテムエンティティを表す
 type Todo struct {
 	ID          int64
 	Title       string

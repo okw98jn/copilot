@@ -7,19 +7,19 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// TodoController handles HTTP requests for todos
+// TodoController はTodoのHTTPリクエストを処理する
 type TodoController struct {
 	todoUseCase usecase.TodoUseCase
 }
 
-// NewTodoController creates a new todo controller
+// NewTodoController は新しいTodoコントローラを作成する
 func NewTodoController(todoUseCase usecase.TodoUseCase) *TodoController {
 	return &TodoController{
 		todoUseCase: todoUseCase,
 	}
 }
 
-// GetAll handles GET requests to retrieve all todos
+// GetAll は全てのTodoを取得するGETリクエストを処理する
 func (c *TodoController) GetAll(ctx *gin.Context) {
 	todos, err := c.todoUseCase.GetAllTodos(ctx)
 	if err != nil {
@@ -30,7 +30,7 @@ func (c *TodoController) GetAll(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"data": todos})
 }
 
-// RegisterRoutes registers the routes for the TodoController
+// RegisterRoutes はTodoControllerのルートを登録する
 func (c *TodoController) RegisterRoutes(router *gin.Engine) {
 	todoGroup := router.Group("/api/todos")
 	{

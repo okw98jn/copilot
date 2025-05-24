@@ -6,25 +6,25 @@ import (
 	"copilot/internal/usecase/dto"
 )
 
-// TodoUseCase defines the interface for todo use cases
+// TodoUseCase はTodoユースケースのインターフェースを定義する
 type TodoUseCase interface {
-	// GetAllTodos returns all todo items
+	// GetAllTodos は全てのTodoアイテムを返す
 	GetAllTodos(ctx context.Context) ([]*dto.TodoResponse, error)
 }
 
-// todoUseCase implements the TodoUseCase interface
+// todoUseCase はTodoUseCaseインターフェースを実装する
 type todoUseCase struct {
 	todoRepo repository.TodoRepository
 }
 
-// NewTodoUseCase creates a new todo use case instance
+// NewTodoUseCase は新しいTodoユースケースのインスタンスを作成する
 func NewTodoUseCase(todoRepo repository.TodoRepository) TodoUseCase {
 	return &todoUseCase{
 		todoRepo: todoRepo,
 	}
 }
 
-// GetAllTodos returns all todo items
+// GetAllTodos は全てのTodoアイテムを返す
 func (uc *todoUseCase) GetAllTodos(ctx context.Context) ([]*dto.TodoResponse, error) {
 	todos, err := uc.todoRepo.FindAll(ctx)
 	if err != nil {

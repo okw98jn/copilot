@@ -13,7 +13,7 @@ import (
 	"copilot/internal/usecase"
 )
 
-// InitializeAPI sets up the API dependencies
+// InitializeAPI はAPIの依存関係をセットアップする
 func InitializeAPI() (*router.Router, error) {
 	database := db.NewDB()
 	todoRepository := repository.NewTodoRepository(database)

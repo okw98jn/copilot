@@ -12,22 +12,22 @@ import (
 	"github.com/google/wire"
 )
 
-// InitializeAPI sets up the API dependencies
+// InitializeAPI はAPIの依存関係をセットアップする
 func InitializeAPI() (*router.Router, error) {
 	wire.Build(
-		// Infrastructure
+		// インフラストラクチャ
 		db.NewDB,
 		
-		// Repository
+		// リポジトリ
 		repository.NewTodoRepository,
 		
-		// UseCase
+		// ユースケース
 		usecase.NewTodoUseCase,
 		
-		// Controller
+		// コントローラ
 		controller.NewTodoController,
 		
-		// Router
+		// ルーター
 		router.NewRouter,
 	)
 	
