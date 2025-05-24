@@ -3,10 +3,6 @@
 .env.local
 .env.*.local
 
-# Docker volumes data
-docker/postgres/data/
-docker/valkey/data/
-
 # Logs
 *.log
 logs/
@@ -19,22 +15,15 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
+# Go
+tmp/
+*.exe
+*.exe~
+*.dll
 *.so
-.Python
-env/
-venv/
-ENV/
-.venv/
+*.dylib
+*.test
+coverage.out
 
 # Temporary files
 *.tmp
