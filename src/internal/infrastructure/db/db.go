@@ -21,12 +21,12 @@ func NewDB() *bun.DB {
 	dbHost := getEnv("POSTGRES_HOST", "postgres")
 	dbPort := getEnv("POSTGRES_PORT", "5432")
 
-	// Create DSN string
-	dsn := fmt.Sprintf("******%s:%s/%s?sslmode=disable",
+	// Create connection string
+	connStr := fmt.Sprintf("******%s:%s/%s?sslmode=disable", 
 		dbUser, dbPassword, dbHost, dbPort, dbName)
 
 	// Open connection
-	sqldb := sql.OpenDB(pgdriver.NewConnector(pgdriver.WithDSN(dsn)))
+	sqldb := sql.OpenDB(pgdriver.NewConnector(pgdriver.WithDSN(connStr)))
 
 	// Create bun.DB instance
 	db := bun.NewDB(sqldb, pgdialect.New())
