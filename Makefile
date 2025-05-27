@@ -36,3 +36,6 @@ shell-go: ## Goコンテナにシェルで接続
 
 shell-db: ## PostgreSQLコンテナにシェルで接続
 	docker-compose -f $(DOCKER_COMPOSE_FILE) exec postgres bash
+
+tidy: ## Goの依存関係を整理
+	docker-compose -f $(DOCKER_COMPOSE_FILE) exec go-app go mod tidy
