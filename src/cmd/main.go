@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"copilot/internal/adapter/controller"
+	"copilot/internal/infrastructure/router"
+)
 
 func main() {
-	fmt.Println("Hello, Worlada!")
+	router := router.New(controller.NewUserController())
+	router.Run()
 }
