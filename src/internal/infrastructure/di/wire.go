@@ -5,6 +5,10 @@ package di
 
 import (
 	"copilot/internal/adapter/controller"
+	"copilot/internal/application/usecase"
+	"copilot/internal/infrastructure/config"
+	"copilot/internal/infrastructure/db"
+	"copilot/internal/infrastructure/repository"
 	"copilot/internal/infrastructure/router"
 
 	"github.com/gin-gonic/gin"
@@ -14,8 +18,10 @@ import (
 // Init は依存性注入を使用してgin.Engineを初期化します
 func Init() (*gin.Engine, error) {
 	wire.Build(
-		// config.New,
-		// db.New,
+		config.NewConfig,
+		db.NewDB,
+		repository.NewUserRepository,
+		usecase.NewUserUseCase,
 		controller.NewUserController,
 		router.NewRouter,
 	)

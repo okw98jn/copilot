@@ -3,6 +3,8 @@ package controller
 import (
 	"net/http"
 
+	"copilot/internal/application/usecase"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,16 +12,21 @@ type UserController interface {
 	GetAllUsers(c *gin.Context)
 }
 
-type userController struct{}
+type userController struct {
+	userUseCase usecase.UserUseCase
+}
 
-func NewUserController() UserController {
-	return &userController{}
+func NewUserController(userUseCase usecase.UserUseCase) UserController {
+	return &userController{
+		userUseCase: userUseCase,
+	}
 }
 
 func (uc *userController) GetAllUsers(c *gin.Context) {
-	users := []map[string]string{
-		{"id": "1", "name": "John Doe", "email": "john@example.com"},
-		{"id": "2", "name": "Jane Smith", "email": "jane@example.com"},
+	users, err := uc.userUseCase.GetAllUsers()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
 	}
 
 	c.JSON(http.StatusOK, users)
