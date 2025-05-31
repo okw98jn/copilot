@@ -25,11 +25,11 @@ func NewUserRepository(db *bun.DB) repository.UserRepository {
 // FindAll は全てのユーザーを取得します
 func (ur *userRepository) FindAll() ([]*entity.User, error) {
 	var userModels []model.UserModel
-	
+
 	err := ur.db.NewSelect().
 		Model(&userModels).
 		Scan(context.Background())
-	
+
 	if err != nil {
 		return nil, err
 	}
