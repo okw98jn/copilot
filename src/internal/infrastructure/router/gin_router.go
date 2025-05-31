@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func New(userController controller.UserController) *gin.Engine {
+func NewRouter(userController controller.UserController) *gin.Engine {
 	router := gin.Default()
 
 	api := router.Group("/api")

@@ -1,11 +1,10 @@
 package main
 
 import (
-	"copilot/internal/adapter/controller"
-	"copilot/internal/infrastructure/router"
+	"copilot/internal/infrastructure/di"
 )
 
 func main() {
-	router := router.New(controller.NewUserController())
+	router, _ := di.Init()
 	router.Run()
 }
